@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <title>调查问卷</title>
+    </head>
+    <body>
+        <h1 id="survey-title"></h1>
+        <p id="survey-brief"></p>
+        <form method="post" action="/survey/bind.do">
+            <button>绑定</button>
+            <input type="hidden" name="sid" id="sid">
+            <ol></ol>
+        </form>
+
+        <script src="./js/bind.js"></script>
+    </body>
+</html>

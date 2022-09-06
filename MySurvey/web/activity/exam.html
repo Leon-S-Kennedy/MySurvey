@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <title>调查问卷</title>
+    </head>
+    <body>
+        <div>
+            <h1 class="title">加载中 ...</h1>
+            <p class="brief">加载中 ...</p>
+        </div>
+        <div>
+            <form method="post" action="/activity/exam.do">
+                <button>提交</button>
+                <input type="text" name="nickname">
+                <input type="text" name="phone">
+                <input type="hidden" name="aid" id="aid">
+                <div class="questionList">
+                    <!--                <div class="questionItem">-->
+                    <!--                    <div class="question">你是谁</div>-->
+                    <!--                    <div class="option">-->
+                    <!--                        <input type="radio" name="qid-1" value="0"> 猫-->
+                    <!--                    </div>-->
+                    <!--                    <div class="option">-->
+                    <!--                        <input type="radio" name="qid-1" value="1"> 狗-->
+                    <!--                    </div>-->
+                    <!--                    <div class="option">-->
+                    <!--                        <input type="radio" name="qid-1" value="2"> 马-->
+                    <!--                    </div>-->
+                    <!--                    <div class="option">-->
+                    <!--                        <input type="radio" name="qid-1" value="3"> 牛-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+                </div>
+            </form>
+        </div>
+
+        <script src="./js/exam.js"></script>
+    </body>
+</html>
