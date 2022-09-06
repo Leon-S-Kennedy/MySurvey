@@ -46,7 +46,7 @@ Web服务器：Tomcat
 * results ： reid、aid、nickname、phone、answer  
 
 表的关系如下：  
-![](.\img.png)
+![](https://github.com/Leon-S-Kennedy/MySurvey/blob/main/img.png)
 ## 具体实现
 ### 用户管理
 **注册：**  
