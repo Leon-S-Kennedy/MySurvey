@@ -1,13 +1,13 @@
-#在线调查问卷系统
-##前言
+# 在线调查问卷系统
+## 前言
 为了巩固自己的JavaWeb基础，采用了Servlet+JSON+Ajax的方式来完成这个项目
-##开发环境
+## 开发环境
 集成开发环境：IDEA  
 Web服务器：Tomcat  
 项目搭建：Maven  
 相关软件包：servlet、mysql、lombok、jackson
-##功能点
-###用户管理  
+## 功能点
+### 用户管理  
 **注册：**
 管理员用户进行注册，使用form表单收集用户的username和password。插入到数据库表中，为了提高安全性使用BCrypt对用户的密码进行加密。  
 **登录:**
@@ -19,22 +19,22 @@ Web服务器：Tomcat
 使用form表单收集管理员需要录入的题目，然后将题目插入到数据库表中。  
 **题目列表：**
 查询当前管理员账户所录制的所有题目以及其相关信息，由于题目信息量较大，所以需要加入分页功能。并且需要能够显示该题目被多少问卷所绑定。  
-###问卷管理
+### 问卷管理
 **新建问卷：**
 输入本次问卷的题目和简介，然后将录入的信息进行提交然后存储到数据库中。  
 **问卷列表：**
 查询当前管理员账户所创建的问卷信息，然后分页显示  
 **关联题目：**
 将指定的问卷关联题目，即将题目绑定到问卷中。
-###活动管理  
+### 活动管理  
 **新建活动：**
 创建新的活动，指定具体的调查问卷，然后插入到数据库表中。  
 **活动列表：**
-显示当前管理员用户所创建的活动信息。
+显示当前管理员用户所创建的活动信息。  
 **结果显示：**
 收集用户提交的调查问卷，对调查问卷的结果进行分析，使用统计图表的方式来直观的展示本次问卷的相关信息  
 
-###调查问卷页
+### 调查问卷页
 这个是发布给普通用户的调查问卷。包含活动信息，问卷信息，题目信息等。
 ##数据库设计
 本项目中共涉及到6张表：用户表、题目表、问卷表、题目和问卷关系表、活动表、结果表  
@@ -46,9 +46,9 @@ Web服务器：Tomcat
 * results ： reid、aid、nickname、phone、answer  
 
 表的关系如下：  
-![](D:\javaFile\ideaProjects\MySurvey\blog\img.png)
-##具体实现
-###用户管理
+![](.\img.png)
+## 具体实现
+### 用户管理
 **注册：**  
 /user/register.html ：  
 * 静态资源，采用form 表单，提交 post 请求，提交用户名 + 密码  
@@ -71,7 +71,7 @@ Web服务器：Tomcat
 **退出：**  
 /user/quit.do：  
 * 动态资源，将用户的信息从session中删除即可
-###题库管理
+### 题库管理
 **题目录入：**  
 /question/create.html： 
 * 静态资源，采用form表单，提交post请求，将题目信息进行提交  
@@ -95,7 +95,7 @@ Web服务器：Tomcat
 `select count(*) from questions where uid = ?`  
 `select qid ,count(*) as ref_count from relations where qid in(%s) group by qid order by qid`  
 
-###问卷管理
+### 问卷管理
 **创建问卷：**  
 /survey/create.html：  
 * 静态资源，收集用户输入的问卷基本信息  
@@ -140,7 +140,7 @@ Web服务器：Tomcat
 `delete from relations where sid = ? and qid in (%s)`  
 `insert into relations (sid, qid) values (...)`
 
-###活动管理
+### 活动管理
 **创建活动：**  
 /activity/create.html：  
 * 静态资源，用下拉列表显示问卷信息，收集活动信息  
@@ -187,7 +187,7 @@ Web服务器：Tomcat
 `select qid, question, options from questions where qid in (%s)`  
 `select answer from results where aid = ?`  
 
-###调查问卷页
+### 调查问卷页
 /activity/exam.html：  
 * 静态资源，可供所有用户填写的调查问卷，包含问卷信息和题目信息。
 
@@ -204,5 +204,5 @@ Web服务器：Tomcat
 `select title, brief, q.qid, question, options from activities a join surveys s on a.sid = s.sid join relations r on s.sid = r.sid join questions q on r.qid = q.qid where aid = ? order by q.qid`  
 `insert into results (aid,nickname,phone,answer) values (?,?,?,?)`  
 
-##项目总结
+## 项目总结
 该项目属于基础的JavaWeb练手项目，用来巩固自己的MySQL以及JavaWeb的能力。主要是需要理清各个数据库表之间的关系，整理各个功能点对应的SQL代码，剩下的就是将数据一层一层凑成自己需要的格式，然后进行序列化。
